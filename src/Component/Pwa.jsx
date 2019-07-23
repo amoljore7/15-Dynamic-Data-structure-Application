@@ -20,9 +20,9 @@ class Pwa extends Component {
         this.addToHome = this.addToHome.bind(this);
         this.shouldShowAddButton = this.shouldShowAddButton.bind(this);
         this.openWindowOrTab = this.openWindowOrTab.bind(this);
-       
+
         this.getMyData = this.getMyData.bind(this);
-        
+
 
     }
     componentDidMount = () => {
@@ -102,78 +102,85 @@ class Pwa extends Component {
     openWindowOrTab(url = window.location.href) {
         window.open(url, '_blank');
     }
-  
+
 
     render() {
         const { Domain, Channel } = this.props.PwaPageData;
         return (
             <body>
-                 
+
                 <div className="container">
-                        {this.shouldShowAddButton() ? (
-                            <button onClick={this.addToHome}>
-                                <h3 className="text-right text-success bg-dark">Install App</h3>
-                            </button>
-                        ) : null}
-                         
+                    {this.shouldShowAddButton() ? (
+                        <button onClick={this.addToHome}>
+                            <h3 className="text-primary btn">Install App</h3>
+                        </button>
+                    ) : null}
 
-                <div className="row"> 
-                    <div className="col-xl-12 col-lg-12 col-md-12 col-sm-12  text-center text-white "><h1 className="display-5 font-weight-bold">TITLE GOES HERE</h1></div>
-                </div><br></br>
-                <div className="row"> 
-                    <div className="col-xl-12 col-lg-12 col-md-12 col-sm-12  bg-white text-center text-body"><h1 className="display-5 font-weight-bold">ANNOUNCEMENTS GO HERE</h1></div>
-                </div><br></br>
-                <div className="row"> 
-                    <div className="col-xl-12 col-lg-12 col-md-12 col-sm-12  bg-white text-center text-body"><h1 className="display-4 font-weight-bold">AVEDA TOTAL GLOBAL SALES <span className="text-success">+15%</span> </h1></div>
-                </div><br></br>
-                 
-                <div className="row"> 
-                        <div className="col-xl-5 col-lg-5 col-md-5 bg-white model-box1 text-center">
-                            <h3 className="text-dark ">BY DOMAIN (-/+)</h3>
-                            <hr></hr>
-                            <div>
-                                {
-                                    (Domain && (Domain.length > 0)) ?
 
-                                        <div className="col-lg-12">
-                                            {
-                                                Domain.map((item) => {
-                                                return (
-                                                        <GetMyLabel Domain={item} />
-                                                )
-                                            })
-                                            }
-                                        </div>
-                                        : null
-                                }
+                    <div className="row">
+                        <div className="col-xl-12 col-lg-12 col-md-12 col-sm-12  text-center text-white "><h1 className=" display-5 font-weight-bold">TITLE GOES HERE</h1></div>
+                    </div><br></br>
+                    <div className="row">
+                        <div className="col-xl-12 col-lg-12 col-md-12 col-sm-12  bg-white text-center text-body "><h1 className="heading font-weight-bold ">ANNOUNCEMENTS GO HERE</h1></div>
+                    </div><br></br>
+                    <div className="row">
+                        <div className="col-xl-12 col-lg-12 col-md-12 col-sm-12  bg-white text-center text-body"><h1 className="heading display-4 font-weight-bold">AVEDA TOTAL GLOBAL SALES <span className="text-success">+15%</span> </h1></div>
+                    </div><br></br>
+
+                    <div className="row padding">
+                        <div className="col-xl-6 col-lg-6 col-md-6 model-box1 text-center">
+                            <div className="bg-white box1">
+                                <h3 className="text-dark ">BY DOMAIN (-/+)</h3>
+                                <hr></hr>
+                                <div>
+                                    {
+                                        (Domain && (Domain.length > 0)) ?
+
+                                            <div className="col-lg-12">
+                                                {
+                                                    Domain.map((item) => {
+                                                        return (
+                                                            <GetMyLabel Domain={item} />
+                                                        )
+                                                    })
+                                                }
+                                            </div>
+                                            : null
+                                    }
+                                </div>
                             </div>
+
                         </div>
-                        
-                        <div className="col-xl-2 col-lg-2 col-md-2"></div>
-                        
-                        <div className="col-xl-5 col-lg-5 col-md-5  bg-white model-box2 text-center ">
-                            <h3 className="text-dark ">BY CHANNEL (-/+)</h3>
-                            <hr></hr>
-                            <div>
-                                {
-                                    (Channel && (Channel.length > 0)) ?
+                        <div className="col-xl-6 col-lg-6 col-md-6 model-box2  text-center ">
+                            <div className="bg-white box2">
+                                <h3 className="text-dark ">BY CHANNEL (-/+)</h3>
+                                <hr></hr>
+                                <div>
+                                    {
+                                        (Channel && (Channel.length > 0)) ?
 
-                                    <div className="col-lg-12">
-                                        {Channel.map((item) => {
-                                            return (
-                                                <span>
-                                                    <GetMyLabel Channel={item} />
-                                                </span>
-                                            )
-                                        })
-                                        }
-                                    </div>
-                                    : null
-                                }
+                                            <div className="col-lg-12">
+                                                {Channel.map((item) => {
+                                                    return (
+                                                        <span>
+                                                            <GetMyLabel Channel={item} />
+                                                        </span>
+                                                    )
+                                                })
+                                                }
+                                            </div>
+                                            : null
+                                    }
+                                </div>
                             </div>
+
                         </div>
                     </div>
-                </div>   
+                </div>
+                <span>
+                    <Online><span className="text-success">Online</span></Online>
+                    <Offline><span className="text-success    ">Offline</span></Offline>
+                </span>
             </body>
         );
     }

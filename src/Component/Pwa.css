@@ -17,9 +17,42 @@ hr{
   border: 1px solid black;
   height: 20px;
 }
-
 .box-b{
   background-color: green;
   height: 100%;
 }
+.model-box1{
+  margin-left: 0%;
+  padding-left: 0%;
+}
+.model-box2{
+  margin-right: 0%;
+  padding-right: 0%;
+}
+.box1{
+width: 100%;
+height: 100%;
 
+}
+.box2{
+ width: 100%;
+ height: 100%;
+}
+
+@media (min-width: 357px) and (max-width: 767px) {
+  .container{
+    padding: 5%;
+  }
+ .model-box1{
+   padding: 0%
+ }
+  .model-box2{
+    margin-top: 7%;
+    padding: 0%;
+  
+  }
+  .heading{
+    font-size: x-large;
+  }
+
+}

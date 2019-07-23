@@ -8,7 +8,6 @@ class GetMyBox extends Component {
     }
 
     empData(value) {
-        console.log(">>>> checkpoint >> value >>", value);
         var widthBoxA = 100;
         var inputValue = value;
         var total = 100;
@@ -21,7 +20,6 @@ class GetMyBox extends Component {
             left = midpoint - widthDiv2;
         }
 
-        console.log(">>>> checkpoint >>", widthDiv2);
 
         if(widthDiv2 == 50){
             widthDiv2 = 48;
