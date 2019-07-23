@@ -2,7 +2,7 @@
   "name": "hello",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://amoljore7.github.io/PWA-DemoFinal-1/",
+  "homepage": "https://amoljore7.github.io/PWA-DemoFinal/",
   "dependencies": {
     "react": "^16.8.6",
     "react-detect-offline": "^2.4.0",
