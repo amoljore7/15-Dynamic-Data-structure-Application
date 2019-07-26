@@ -34,12 +34,11 @@ class Pwa extends Component {
     }
 
     onSuccessOfGetMyData(successResponse) {
-        console.log("this is success callback >>" + JSON.stringify(successResponse));
         this.props.PwaPageDataInReduxStore(successResponse);
     }
 
     onFailureOfGetMyData(failureResponse) {
-        alert("ServiceCall Failure", failureResponse);
+        console.log("ServiceCall Failure", failureResponse);
     }
     componentDidMount = () => {
         // check if user is already running app from home screen

@@ -14,17 +14,14 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    
     "dev": "REACT_APP_ENV=development npm start",
     "prod": "REACT_APP_ENV=production npm start",
     "build": "react-scripts build",
-
     "build:dev": "REACT_APP_ENV=development npm build",
     "build:prod": "REACT_APP_ENV=poduction npm build",
-    
+    "deploy": "gh-pages -b master -d build",
     "test": "react-scripts test",
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d build",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
