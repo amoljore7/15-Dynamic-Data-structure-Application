@@ -2,9 +2,11 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import PwaPageAction from './PwaAction'
-import APIConfig from '../../src/urls.json'
 import { Offline, Online } from "react-detect-offline";
 import GetMyLabel from './getMyLabel.jsx';
+import APIConfig from '../../src/serviceCall.json'
+import { makeServiceCall } from './serviceRequests'
+
 import './Pwa.css';
 
 class Pwa extends Component {
@@ -15,20 +17,31 @@ class Pwa extends Component {
             successfullyInstalled: false,
             acceptedInstall: false,
             declinedInstall: false,
-
         };
         this.addToHome = this.addToHome.bind(this);
         this.shouldShowAddButton = this.shouldShowAddButton.bind(this);
         this.openWindowOrTab = this.openWindowOrTab.bind(this);
+        this.onSuccessOfGetMyData = this.onSuccessOfGetMyData.bind(this);
+        this.onFailureOfGetMyData = this.onFailureOfGetMyData.bind(this);
 
-        this.getMyData = this.getMyData.bind(this);
 
+        makeServiceCall({
+            'apiName': APIConfig.configUrl.getMyData,
+            'type': 'GET',
+            'successCallback': this.onSuccessOfGetMyData,
+            'failureCallback': this.onFailureOfGetMyData
+        });
+    }
 
+    onSuccessOfGetMyData(successResponse) {
+        console.log("this is success callback >>" + JSON.stringify(successResponse));
+        this.props.PwaPageDataInReduxStore(successResponse);
+    }
+
+    onFailureOfGetMyData(failureResponse) {
+        alert("ServiceCall Failure", failureResponse);
     }
     componentDidMount = () => {
-        this.getMyData()
-
-
         // check if user is already running app from home screen
         if (window.matchMedia('(display-mode: standalone)').matches) {
             console.log('App is already installed and running in standalone');
@@ -54,18 +67,6 @@ class Pwa extends Component {
                 });
             });
         }
-    }
-    getMyData() {
-
-        fetch(APIConfig.configUrl.PWAData)
-            .then(data1 => {
-                return data1.json();
-            })
-            .then(data2 => {
-                this.props.PwaPageDataInReduxStore(data2);
-                // console.log(">>>CheckPoint>>>Json Stringify",JSON.stringify(data2));
-            })
-            .catch(error => console.log(error))
     }
 
     addToHome() {
@@ -108,15 +109,21 @@ class Pwa extends Component {
         const { Domain, Channel } = this.props.PwaPageData;
         return (
             <body>
+                <div className="row p-3  bg-white">
+                    <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 text-left">
+                        <Online><span className="btn text-white bg-success">Online</span></Online>
+                        <Offline><span className="btn text-white bg-danger">Offline</span></Offline>
+                    </div>
 
+                    <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 text-right">
+                    {
+                        this.shouldShowAddButton() ? 
+                        (<button type="button" className="btn btn-primary" onClick={this.addToHome}>Install App</button>) : null     
+                    }
+                    </div>
+
+                </div><br></br>
                 <div className="container">
-                    {this.shouldShowAddButton() ? (
-                        <button onClick={this.addToHome}>
-                            <h3 className="text-primary btn">Install App</h3>
-                        </button>
-                    ) : null}
-
-
                     <div className="row">
                         <div className="col-xl-12 col-lg-12 col-md-12 col-sm-12  text-center text-white "><h1 className=" display-5 font-weight-bold">TITLE GOES HERE</h1></div>
                     </div><br></br>
@@ -177,10 +184,7 @@ class Pwa extends Component {
                         </div>
                     </div>
                 </div>
-                <span>
-                    <Online><span className="text-success">Online</span></Online>
-                    <Offline><span className="text-success    ">Offline</span></Offline>
-                </span>
+
             </body>
         );
     }

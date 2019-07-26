@@ -1,0 +1,6 @@
+
+{
+    "configUrl": {
+        "getMyData": "/getMyData"
+    }
+}
