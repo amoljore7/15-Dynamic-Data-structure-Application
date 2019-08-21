@@ -2,7 +2,7 @@
   "name": "hello",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://amoljore7.github.io/Progressive-Web-App/",
+  "homepage": "https://amoljore7.github.io/Desktop-Progressive-Web-App/",
   "dependencies": {
     "react": "^16.8.6",
     "react-detect-offline": "^2.4.0",
@@ -16,12 +16,12 @@
     "start": "react-scripts start",
     "dev": "REACT_APP_ENV=development npm start",
     "prod": "REACT_APP_ENV=production npm start",
-    "build": "react-scripts build",
+    "build": "REACT_APP_ENV=development react-scripts build",
     "build:dev": "REACT_APP_ENV=development npm build",
     "build:prod": "REACT_APP_ENV=poduction npm build",
-    "deploy": "gh-pages -b master -d build",
     "test": "react-scripts test",
     "predeploy": "npm run build",
+    "deploy": "gh-pages -d build",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
@@ -40,7 +40,7 @@
     ]
   },
   "devDependencies": {
-    "gh-pages": "^2.0.1",
+    "gh-pages": "^2.1.1",
     "redux-devtools": "^3.5.0"
   }
 }

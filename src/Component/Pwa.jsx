@@ -23,6 +23,7 @@ class Pwa extends Component {
         this.openWindowOrTab = this.openWindowOrTab.bind(this);
         this.onSuccessOfGetMyData = this.onSuccessOfGetMyData.bind(this);
         this.onFailureOfGetMyData = this.onFailureOfGetMyData.bind(this);
+        this.pageRefreshButton = this.pageRefreshButton.bind(this);
 
 
         makeServiceCall({
@@ -67,6 +68,15 @@ class Pwa extends Component {
             });
         }
     }
+    pageRefreshButton() {
+        makeServiceCall({
+            'apiName': APIConfig.configs.dropbox.download,
+            'type': 'POST',
+            'successCallback': this.onSuccessOfDropboxDownload,
+            'failureCallback': this.onFailureOfDropboxDownload
+        });
+        window.location.reload();     //use to page reload.  
+    }
 
     addToHome() {
         // Show the prompt
@@ -108,17 +118,20 @@ class Pwa extends Component {
         const { Domain, Channel } = this.props.PwaPageData;
         return (
             <body>
-                <div className="row p-3  bg-white">
-                    <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 text-left">
+                  <div className="row p-3 ">
+                    <div className="col-xl-4 col-lg-4 col-md-4 col-sm-4 text-left">
                         <Online><span className="btn text-white bg-success">Online</span></Online>
                         <Offline><span className="btn text-white bg-danger">Offline</span></Offline>
                     </div>
 
-                    <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 text-right">
-                    {
-                        this.shouldShowAddButton() ? 
-                        (<button type="button" className="btn btn-primary" onClick={this.addToHome}>Install App</button>) : null     
-                    }
+                    <div className="col-xl-8 col-lg-8 col-md-8 col-sm-8 text-right">
+                        {
+                            this.shouldShowAddButton() ? 
+                            (
+                            <button type="button" className="btn btn-primary mr-1" onClick={this.addToHome}>Install App</button>
+                            ) : null     
+                        }
+                        <button type="button" className="btn btn-primary mr-1" onClick={this.pageRefreshButton}>Refresh</button>
                     </div>
 
                 </div><br></br>
