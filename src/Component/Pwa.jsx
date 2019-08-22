@@ -75,6 +75,8 @@ class Pwa extends Component {
             'successCallback': this.onSuccessOfGetMyData,
             'failureCallback': this.onFailureOfGetMyData
         });
+        // window.location.reload();     //use to page reload. 
+        console.log(">>>>>>>pageRefreshButton>>>>>>>");
     }
 
     addToHome() {
