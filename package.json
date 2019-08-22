@@ -2,7 +2,7 @@
   "name": "hello",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://amoljore7.github.io/Desktop-Progressive-Web-App/",
+  "homepage": "https://amoljore7.github.io/15-Dynamic-Data-structure-Application/",
   "dependencies": {
     "react": "^16.8.6",
     "react-detect-offline": "^2.4.0",

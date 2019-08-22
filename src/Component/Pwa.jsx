@@ -70,12 +70,11 @@ class Pwa extends Component {
     }
     pageRefreshButton() {
         makeServiceCall({
-            'apiName': APIConfig.configs.dropbox.download,
-            'type': 'POST',
-            'successCallback': this.onSuccessOfDropboxDownload,
-            'failureCallback': this.onFailureOfDropboxDownload
+            'apiName': APIConfig.configUrl.getMyData,
+            'type': 'GET',
+            'successCallback': this.onSuccessOfGetMyData,
+            'failureCallback': this.onFailureOfGetMyData
         });
-        window.location.reload();     //use to page reload.  
     }
 
     addToHome() {
